@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Samson_Brawlers
 {
@@ -6,7 +7,7 @@ namespace Samson_Brawlers
     {
         public void DisplayStory()
         {
-            Console.WriteLine("+=======================================================================================================+");
+            Console.WriteLine("\n+=======================================================================================================+");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("|\t   _____ __                       __  ___          __   \t\t\t\t\t|");
             Console.WriteLine("|\t  / ___// /_____  _______  __    /  |/  /___  ____/ /__ \t\t\t\t\t|");
@@ -44,12 +45,14 @@ namespace Samson_Brawlers
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("|\tYou are no longer a student, you are a fighter whose purpose have been given.\t\t\t|");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
-            Console.WriteLine("|\tWho ordered the deaths of my parents, and why?....\t\t\t\t\t\t|");
+            Console.WriteLine("|\t\"Who ordered the deaths of my parents, and why?\"....\t\t\t\t\t\t|");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("+=======================================================================================================+");
+
+            Thread.Sleep(10000);
         }
     }
 }

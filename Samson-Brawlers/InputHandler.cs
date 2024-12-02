@@ -121,7 +121,14 @@ namespace Samson_Brawlers
         public string BodyTypeInput()
         {
             string question = "CHOOSE A BODY TYPE:";
-            string[] choices = { "STANDARD", "HEAVYWEIGHT", "AGILE", "GRAPPLER", "GIANT" };
+            string[] choices = 
+                { 
+                    "STANDARD", 
+                    "HEAVYWEIGHT", 
+                    "AGILE", 
+                    "GRAPPLER", 
+                    "GIANT" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -130,7 +137,12 @@ namespace Samson_Brawlers
         public string HeightInput()
         {
             string question = "CHOOSE THE CHARACTERS HEIGHT:";
-            string[] choices = { "SMALL (3'0 - 5'0)", "AVERAGE (5'5 - 6'0)", "TALL (6'5 - 7'5)" };
+            string[] choices = 
+                { 
+                    "SMALL (3'0 - 5'0)", 
+                    "AVERAGE (5'5 - 6'0)", 
+                    "TALL (6'5 - 7'5)" 
+                };
             
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -139,7 +151,14 @@ namespace Samson_Brawlers
         public string SkinColorInput()
         {
             string question = "CHOOSE A SKIN TONE/COLOR:";
-            string[] choices = { "FAIR", "LIGHT TAN", "MEDIUM", "DARK BROWN", "BLACK" };
+            string[] choices = 
+                { 
+                    "FAIR", 
+                    "LIGHT TAN", 
+                    "MEDIUM", 
+                    "DARK BROWN", 
+                    "BLACK" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -159,7 +178,18 @@ namespace Samson_Brawlers
         public string HairStyleInput()
         {
             string question = "CHOOSE A HAIR STYLE:";
-            string[] choices = { "UNDERCUT", "SLICKED BACK", "BRAIDED HAIR", "MAN BUN", "BUZZ CUT", "HIGH PONYTAIL", "PIXIE CUT", "LOOSE CURLS", "BOB CUT", "DREADLOCKS" };
+            string[] choices = 
+                { 
+                    "UNDERCUT", 
+                    "SLICKED BACK", 
+                    "BRAIDED HAIR", 
+                    "MAN BUN", 
+                    "BUZZ CUT", 
+                    "HIGH PONYTAIL", 
+                    "PIXIE CUT", 
+                    "LOOSE CURLS", 
+                    "BOB CUT", 
+                    "DREADLOCKS" };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -169,7 +199,17 @@ namespace Samson_Brawlers
         public string HairColorInput()
         {
             string question = "CHOOSE A HAIR COLOR:";
-            string[] choices = { "CHARCOAL BLACK", "DARK BROWN", "YELLOWSTONE", "FIERY RED", "SMOKEY WHITE", "SKY BLUE", "REBECCA PURPLE", "UNICORN PINK" };
+            string[] choices =
+               {
+                    "CHARCOAL BLACK",
+                    "DARK BROWN",
+                    "YELLOWSTONE",
+                    "FIERY RED",
+                    "SMOKEY WHITE",
+                    "SKY BLUE",
+                    "REBECCA PURPLE",
+                    "UNICORN PINK"
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -178,7 +218,14 @@ namespace Samson_Brawlers
         public string HeadShapeInput()
         {
             string question = "CHOOSE A HEAD SHAPE:";
-            string[] choices = { "SQUARE", "OVAL", "ROUND", "TRIANGULAR", "DIAMOND" };
+            string[] choices = 
+                { 
+                    "SQUARE", 
+                    "OVAL", 
+                    "ROUND", 
+                    "TRIANGULAR", 
+                    "DIAMOND" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -187,7 +234,14 @@ namespace Samson_Brawlers
         public string EyeShapeInput()
         {
             string question = "CHOOSE AN EYE SHAPE:";
-            string[] choices = {"ALMOND", "ROUND", "HOODED", "UPTURNED", "NARROW/SLITTED"};
+            string[] choices = 
+                {
+                    "ALMOND", 
+                    "ROUND", 
+                    "HOODED", 
+                    "UPTURNED", 
+                    "NARROW/SLITTED"
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -196,7 +250,17 @@ namespace Samson_Brawlers
         public string EyeColorInput()
         {
             string question = "CHOOSE A EYE COLOR:";
-            string[] choices = { "CHARCOAL BLACK", "DARK BROWN", "YELLOWSTONE", "FIERY RED", "SMOKEY WHITE", "SKY BLUE", "REBECCA PURPLE", "UNICORN PINK" };
+            string[] choices = 
+                { 
+                    "CHARCOAL BLACK", 
+                    "DARK BROWN", 
+                    "YELLOWSTONE",
+                    "FIERY RED", 
+                    "SMOKEY WHITE", 
+                    "SKY BLUE",
+                    "REBECCA PURPLE", 
+                    "UNICORN PINK" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -205,7 +269,15 @@ namespace Samson_Brawlers
         public string FacialHairStyleInput()
         {
             string question = "CHOOSE A FACIAL HAIR STYLE:";
-            string[] choices = {"FULL BEARD", "GOATEE", "MUSTACHE", "STUBBLE", "SIDEBURNS", "NONE"};
+            string[] choices = 
+                {
+                    "FULL BEARD", 
+                    "GOATEE", 
+                    "MUSTACHE", 
+                    "STUBBLE", 
+                    "SIDEBURNS", 
+                    "NONE"
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -218,7 +290,14 @@ namespace Samson_Brawlers
         public string OutfitSetInput()
         {
             string question = "SELECT AN OUTFIT SET:";
-            string[] choices = { "MARTIAL ARTS UNIFORM", "CHINESE TRADITIONAL OUTFIT", "GYM OUTFIT", "CASUAL WEAR", "ARMOR SUIT" };
+            string[] choices = 
+                { 
+                    "MARTIAL ARTS UNIFORM", 
+                    "CHINESE TRADITIONAL OUTFIT", 
+                    "GYM OUTFIT", 
+                    "CASUAL WEAR", 
+                    "ARMOR SUIT" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -227,7 +306,15 @@ namespace Samson_Brawlers
         public string TopClothingInput()
         {
             string question = "SELECT THE TOP CLOTHING:";
-            string[] choices = { "BLOUSE", "JACKET", "T-SHIRT", "TANK TOP", "ROBES", "TAEKWONDO OUTFIT TOP" };
+            string[] choices = 
+                { 
+                    "BLOUSE", 
+                    "JACKET", 
+                    "T-SHIRT", 
+                    "TANK TOP", 
+                    "ROBES", 
+                    "TAEKWONDO OUTFIT TOP" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -236,7 +323,15 @@ namespace Samson_Brawlers
         public string BottomClothingInput()
         {
             string question = "SELECT THE BOTTOM CLOTHING:";
-            string[] choices = { "BAGGY JEANS", "SKIRT", "TAEKWONDO OUTFIT BOTTOM", "LEGGINGS", "CARGO PANTS", "SLACKS" };
+            string[] choices = 
+                { 
+                    "BAGGY JEANS", 
+                    "SKIRT", 
+                    "TAEKWONDO OUTFIT BOTTOM", 
+                    "LEGGINGS",
+                    "CARGO PANTS", 
+                    "SLACKS" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }
@@ -245,7 +340,14 @@ namespace Samson_Brawlers
         public string FootWearInput()
         {
             string question = "SELECT A FOOTWEAR:";
-            string[] choices = { "BOOTS", "SLIPPERS", "SNEAKERS", "HEELS", "LOAFERS" };
+            string[] choices = 
+                { 
+                    "BOOTS", 
+                    "SLIPPERS",
+                    "SNEAKERS", 
+                    "HEELS", 
+                    "LOAFERS" 
+                };
 
             return choices[MultipleChoiceQuestion(question, choices) - 1];
         }

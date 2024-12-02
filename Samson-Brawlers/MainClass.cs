@@ -12,6 +12,7 @@ namespace Samson_Brawlers
             MainClass main = new MainClass();
             InputHandler inputHandler = new InputHandler();
             StoryMode story = new StoryMode();
+            Credits credits = new Credits();
 
             bool isGameRunning = true;
 
@@ -34,15 +35,19 @@ namespace Samson_Brawlers
 
                         break;
                     case "2":
+                        main.LoadGame();
                         break;
                     case "3":
                         story.DisplayStory();
                         break;
                     case "4":
+                        credits.DisplayCredits();
+                        break;
+                    case "0":
+                        Console.WriteLine("\t\t\t\t\t\tEXITED!");
+                        isGameRunning = false;
                         break;
                 }
-
-
 
                 Console.WriteLine("\n\n\n");
             }
@@ -215,6 +220,15 @@ namespace Samson_Brawlers
                 );
 
             characters.Add( character );
+        }
+
+        public void LoadGame()
+        {
+            Console.WriteLine("LIST OF CHARACTERS: \n");
+            for( int i = 0; i < characters.Count; i++ )
+            {
+                Console.WriteLine("- " + characters[i].Name);
+            }
         }
     }
 }
