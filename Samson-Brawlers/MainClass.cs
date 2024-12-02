@@ -8,6 +8,48 @@ namespace Samson_Brawlers
 
         static void Main(string[] args)
         {
+            // Objects
+            MainClass main = new MainClass();
+            InputHandler inputHandler = new InputHandler();
+            StoryMode story = new StoryMode();
+
+            bool isGameRunning = true;
+
+            while(isGameRunning)
+            {
+                main.MainMenuTitle();
+
+                string menuChoice = inputHandler.MenuInput();
+
+                switch (menuChoice)
+                {
+                    case "1":
+                        Console.WriteLine("\n\t\t\t+------------------------------------------------------+");
+                        Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                        Console.WriteLine("\t\t\t|\t\tCREATE YOUR OWN CHARACTER\t       |");
+                        Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                        Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
+
+                        main.CreateCharacter(inputHandler);
+
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        story.DisplayStory();
+                        break;
+                    case "4":
+                        break;
+                }
+
+
+
+                Console.WriteLine("\n\n\n");
+            }
+        }
+
+        public void MainMenuTitle()
+        {
             Console.WriteLine("+=======================================================================================================+");
             Console.WriteLine("|\t\t\t  _________                           \t\t\t\t\t\t|");
             Console.WriteLine("|\t\t\t /   _____/____    _____   __________   ____              \t\t\t|");
@@ -34,28 +76,6 @@ namespace Samson_Brawlers
             Console.WriteLine("|\t\t\t\t\t+-----------------------+\t\t\t\t\t|");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("+=======================================================================================================+\n");
-
-            // Objects
-            MainClass main = new MainClass();
-            InputHandler inputHandler = new InputHandler();
-
-            string menuChoice = inputHandler.MenuInput();
-           
-            switch(menuChoice)
-            {
-                case "1":
-                    Console.WriteLine("\n\t\t\t+------------------------------------------------------+");
-                    Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-                    Console.WriteLine("\t\t\t|\t\tCREATE YOUR OWN CHARACTER\t       |");
-                    Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-                    Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
-
-                    main.CreateCharacter(inputHandler);
-
-                    break;
-                case "2":
-                    break;
-            }
         }
 
         public void CreateCharacter(InputHandler inputHandler)
