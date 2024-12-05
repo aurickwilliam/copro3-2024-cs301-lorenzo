@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Threading;
 
 namespace Samson_Brawlers
 {
-    public class StoryMode
+    public class StoryMode : DisplayText
     {
-        public void DisplayStory()
+        public override void Display()
         {
-            Console.WriteLine("\n+=======================================================================================================+");
+            Console.Clear();
+            Console.WriteLine("+=======================================================================================================+");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("|\t   _____ __                       __  ___          __   \t\t\t\t\t|");
             Console.WriteLine("|\t  / ___// /_____  _______  __    /  |/  /___  ____/ /__ \t\t\t\t\t|");
@@ -52,7 +52,10 @@ namespace Samson_Brawlers
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("+=======================================================================================================+");
 
-            Thread.Sleep(10000);
+            if (GoBackToMainMenu())
+            {
+                Console.Clear();
+            }
         }
     }
 }

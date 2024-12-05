@@ -3,11 +3,11 @@ using System.Threading;
 
 namespace Samson_Brawlers
 {
-    public class Credits
+    public class Credits : DisplayText
     {
-        public void DisplayCredits() 
+        public override void Display() 
         {
-            Console.WriteLine("\n+=======================================================================================================+");
+            Console.WriteLine("+=======================================================================================================+");
             Console.WriteLine("|\t\t\t\t\t\t\t\t\t\t\t\t\t|");
             Console.WriteLine("|  \t\t\t\t     ______              ___ __      \t\t\t\t\t|");
             Console.WriteLine("|\t\t\t\t    / ____/_______  ____/ (_) /______\t\t\t\t\t|");
@@ -43,9 +43,12 @@ namespace Samson_Brawlers
             Console.WriteLine("\t\t\t\t|  \"Stay hungry, stay foolish.\" \t|");
             Console.WriteLine("\t\t\t\t|  – Steve Jobs\t\t\t\t|");
             Console.WriteLine("\t\t\t\t|\t\t\t\t\t|");
-            Console.WriteLine("\t\t\t\t+---------------------------------------+");
+            Console.WriteLine("\t\t\t\t+---------------------------------------+\n\n\n");
 
-            Thread.Sleep(5000);
+            if (GoBackToMainMenu())
+            {
+                Console.Clear();
+            }
         }
     }
 }

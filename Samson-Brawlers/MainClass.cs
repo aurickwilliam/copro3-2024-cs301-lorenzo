@@ -22,34 +22,27 @@ namespace Samson_Brawlers
 
                 string menuChoice = inputHandler.MenuInput();
 
+                Console.Clear();
+
                 switch (menuChoice)
                 {
                     case "1":
-                        Console.WriteLine("\n\t\t\t+------------------------------------------------------+");
-                        Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-                        Console.WriteLine("\t\t\t|\t\tCREATE YOUR OWN CHARACTER\t       |");
-                        Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-                        Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
-
-                        main.CreateCharacter(inputHandler);
-
+                        main.CreateCharacter();
                         break;
                     case "2":
                         main.LoadGame();
                         break;
                     case "3":
-                        story.DisplayStory();
+                        story.Display();
                         break;
                     case "4":
-                        credits.DisplayCredits();
+                        credits.Display();
                         break;
                     case "0":
                         Console.WriteLine("\t\t\t\t\t\tEXITED!");
                         isGameRunning = false;
                         break;
                 }
-
-                Console.WriteLine("\n\n\n");
             }
         }
 
@@ -83,61 +76,53 @@ namespace Samson_Brawlers
             Console.WriteLine("+=======================================================================================================+\n");
         }
 
-        public void CreateCharacter(InputHandler inputHandler)
+        public void CreateCharacter()
         {
+            Character character = new Character();
+
+            Console.WriteLine("\n\t\t\t+------------------------------------------------------+");
+            Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+            Console.WriteLine("\t\t\t|\t\tCREATE YOUR OWN CHARACTER\t       |");
+            Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+            Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
+
             // PHYSICAL APPEARANCE
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
             Console.WriteLine("\t\t\t|\t\t   PHYSICAL APPEARANCE\t\t       |");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
 
-            string gender = inputHandler.GenderInput();
-            string bodyType = inputHandler.BodyTypeInput();
-            string height = inputHandler.HeightInput();
-            string skinColor = inputHandler.SkinColorInput();
-            bool skinWrinkles = inputHandler.SkinWrinklesInput();
-            string hairStyle = inputHandler.HairStyleInput();
-            string hairColor = inputHandler.HairColorInput();
-            string headShape = inputHandler.HeadShapeInput();
-            string eyeShape = inputHandler.EyeShapeInput();
-            string eyeColor = inputHandler.EyeColorInput();
-            string facialHairStyle = inputHandler.FacialHairStyleInput();
+            character.physicalAppearance.GetInput();
 
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
             Console.WriteLine("\t\t\t|\t\t CLOTHING & ACCESSORIES\t       \t       |");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
 
-            string outfitSet = inputHandler.OutfitSetInput();
-            string topClothing = inputHandler.TopClothingInput();
-            string bottomClothing = inputHandler.BottomClothingInput();
-            string footWear = inputHandler.FootWearInput();
-            string accessories = inputHandler.AccessoriesInput();
-            bool tattoo = inputHandler.TattooInput();
-            bool scar = inputHandler.ScarInput();
-            bool aura = inputHandler.AuraInput();
+            character.clothesAccessories.GetInput();
 
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
             Console.WriteLine("\t\t\t|\t\t   WEAPONS & ATTACKS\t\t       |");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
 
-            string meleeWeapon = inputHandler.MeleeWeaponInput();
-            string fightingStyle = inputHandler.FightingStyleInput();
-            string stance = inputHandler.StanceInput();
+            character.weaponsAttacks.GetInput();
 
-            List<int> stats = inputHandler.StatisticsInput();
+
+            character.stats.GetInput();
 
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
             Console.WriteLine("\t\t\t|\t\t CHARACTERS BIOGRAPHY\t\t       |");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-            Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
 
-            string name = inputHandler.NameInput();
-            Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
-            string title = inputHandler.TitleInput();
-            Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
+            character.GetBiographyInput();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("\t\t\t .");
+                Thread.Sleep(800);
+            }
 
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
@@ -147,77 +132,46 @@ namespace Samson_Brawlers
 
             Console.WriteLine("\n\n\nData:");
             Console.WriteLine("\nPHYSICAL APPEARANCE");
-            Console.WriteLine("GENDER: " + gender);
-            Console.WriteLine("BODY TYPE: " + bodyType);
-            Console.WriteLine("HEIGHT: " + height);
-            Console.WriteLine("SKIN COLOR: " + skinColor);
-            Console.WriteLine("SKIN WRINKLES: " + skinWrinkles);
-            Console.WriteLine("HAIR STYLE: " + hairStyle);
-            Console.WriteLine("HAIR COLOR: " + hairColor);
-            Console.WriteLine("HEAD SHAPE: " + headShape);
-            Console.WriteLine("EYE SHAPE: " + eyeShape);
-            Console.WriteLine("EYE COLOR: " + eyeColor);
-            Console.WriteLine("FACIAL HAIR STYLE: " + facialHairStyle);
+            Console.WriteLine("GENDER: " + character.physicalAppearance.Gender);
+            Console.WriteLine("BODY TYPE: " + character.physicalAppearance.BodyType);
+            Console.WriteLine("HEIGHT: " + character.physicalAppearance.Height);
+            Console.WriteLine("SKIN COLOR: " + character.physicalAppearance.SkinColor);
+            Console.WriteLine("SKIN WRINKLES: " + character.physicalAppearance.IsSkinWrinkles);
+            Console.WriteLine("HAIR STYLE: " + character.physicalAppearance.HairStyle);
+            Console.WriteLine("HAIR COLOR: " + character.physicalAppearance.HairColor);
+            Console.WriteLine("HEAD SHAPE: " + character.physicalAppearance.HeadShape);
+            Console.WriteLine("EYE SHAPE: " + character.physicalAppearance.EyeShape);
+            Console.WriteLine("EYE COLOR: " + character.physicalAppearance.EyeColor);
+            Console.WriteLine("FACIAL HAIR STYLE: " + character.physicalAppearance.FacialHairStyle);
 
             Console.WriteLine("\nCLOTHING & ACCESSORIES");
-            Console.WriteLine("OUTFIT SET: " + outfitSet);
-            Console.WriteLine("TOP CLOTHING: " + topClothing);
-            Console.WriteLine("BOTTOM CLOTHING: " + bottomClothing);
-            Console.WriteLine("FOOTWEAR: " + footWear);
-            Console.WriteLine("ACCESSORIES: " + accessories);
-            Console.WriteLine("TATTOO: " + tattoo);
-            Console.WriteLine("SCAR: " + scar);
-            Console.WriteLine("AURA: " + aura);
+            Console.WriteLine("OUTFIT SET: " + character.clothesAccessories.OutfitSet);
+            Console.WriteLine("TOP CLOTHING: " + character.clothesAccessories.TopClothing);
+            Console.WriteLine("BOTTOM CLOTHING: " + character.clothesAccessories.BottomClothing);
+            Console.WriteLine("FOOTWEAR: " + character.clothesAccessories.FootWear);
+            Console.WriteLine("ACCESSORIES: " + character.clothesAccessories.Accessories);
+            Console.WriteLine("TATTOO: " + character.clothesAccessories.IsTattoo);
+            Console.WriteLine("SCAR: " + character.physicalAppearance.IsScar);
+            Console.WriteLine("AURA: " + character.clothesAccessories.IsAura);
 
             Console.WriteLine("\nWEAPONS & ATTACKS");
-            Console.WriteLine("MELEE WEAPON: " + meleeWeapon);
-            Console.WriteLine("FIGHTING STYLE: " + fightingStyle);
-            Console.WriteLine("STANCE: " + stance);
+            Console.WriteLine("MELEE WEAPON: " + character.weaponsAttacks.MeleeWeapon);
+            Console.WriteLine("FIGHTING STYLE: " + character.weaponsAttacks.FightingStyle);
+            Console.WriteLine("STANCE: " + character.weaponsAttacks.Stance);
+
+            List<int> stats = character.stats.GetStatsValue();
 
             Console.WriteLine("\nSTATISTICS");
-            Console.WriteLine("ATTACK POWER: " + stats[0]);    
-            Console.WriteLine("DEFENSE: " + stats[1]);    
-            Console.WriteLine("SPEED: " + stats[2]);    
-            Console.WriteLine("STAMINA: " + stats[3]);    
-            Console.WriteLine("HEALTH: " + stats[4]);    
+            Console.WriteLine("ATTACK POWER: " + stats[0]);
+            Console.WriteLine("DEFENSE: " + stats[1]);
+            Console.WriteLine("SPEED: " + stats[2]);
+            Console.WriteLine("STAMINA: " + stats[3]);
+            Console.WriteLine("HEALTH: " + stats[4]);
             Console.WriteLine("SPECIAL METER GAIN: " + stats[5]);
 
             Console.WriteLine("\nBIOGRAPHY");
-            Console.WriteLine("NAME: " + name);
-            Console.WriteLine("TITLE: " + title);
-
-            Character character = new Character(
-                    name,
-                    title,
-                    gender,
-                    bodyType,
-                    height,
-                    skinColor,
-                    hairStyle,
-                    hairColor,
-                    headShape,
-                    eyeShape,
-                    eyeColor,
-                    facialHairStyle,
-                    outfitSet,
-                    topClothing,
-                    bottomClothing,
-                    footWear,
-                    accessories,
-                    meleeWeapon,
-                    fightingStyle,
-                    stance,
-                    skinWrinkles,
-                    tattoo,
-                    scar,
-                    aura,
-                    stats[0],
-                    stats[1],
-                    stats[2],
-                    stats[3],
-                    stats[4],
-                    stats[5]
-                );
+            Console.WriteLine("NAME: " + character.Name);
+            Console.WriteLine("TITLE: " + character.Title);
 
             characters.Add( character );
         }
