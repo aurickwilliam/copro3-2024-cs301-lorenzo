@@ -236,9 +236,13 @@ namespace Samson_Brawlers
                     }
 
                     // Check the minimum and maximum char
-                    if (!(input.Length >= minChar && input.Length <= maxChar))
+                    if (input.Length > maxChar)
                     {
                         throw new InvalidInputException("\n\t\t\t MAXIMUM CHARACTER HAS BEEN REACHED!\n");
+                    }
+                    else if (input.Length < minChar)
+                    {
+                        throw new InvalidInputException($"\n\t\t\t MINIMUM CHARACTER IS {minChar}!\n");
                     }
                     
 

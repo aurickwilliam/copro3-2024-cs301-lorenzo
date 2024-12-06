@@ -58,8 +58,49 @@ namespace Samson_Brawlers
         public void GetBiographyInput()
         {
             name = inputHandler.TextInput("ENTER YOUR CHARACTERS NAME:", 25, 8, false, true);
-            title = inputHandler.TextInput("ENTER YOUR CHARACTERS TITLE:", 50, 8, true, true);
+            title = inputHandler.TextInput("ENTER YOUR CHARACTERS TITLE:", 30, 8, true, true);
         }
 
+        public void DisplayAllInfo()
+        {
+            Console.WriteLine("\t\t\t+------------------------------------------------------+");
+            Console.WriteLine("\t\t\t|\t\t CHARACTER INFORMATION\t\t       |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| NAME\t\t     | {name, -31} |");
+            Console.WriteLine($"\t\t\t| TITLE\t\t     | {title,-31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| GENDER\t     | {physicalAppearance.Gender,-31} |");
+            Console.WriteLine($"\t\t\t| BODY TYPE\t     | {physicalAppearance.BodyType,-31} |");
+            Console.WriteLine($"\t\t\t| HEIGHT\t     | {physicalAppearance.Height,-31} |");
+            Console.WriteLine($"\t\t\t| SKIN COLOR\t     | {physicalAppearance.SkinColor,-31} |");
+            Console.WriteLine($"\t\t\t| HAIR STYLE\t     | {physicalAppearance.HairStyle,-31} |");
+            Console.WriteLine($"\t\t\t| HAIR COLOR\t     | {physicalAppearance.HairColor,-31} |");
+            Console.WriteLine($"\t\t\t| HEAD SHAPE\t     | {physicalAppearance.HeadShape,-31} |");
+            Console.WriteLine($"\t\t\t| EYE SHAPE\t     | {physicalAppearance.EyeShape,-31} |");
+            Console.WriteLine($"\t\t\t| EYE COLOR\t     | {physicalAppearance.EyeColor,-31} |");
+            Console.WriteLine($"\t\t\t| FACIAL HAIR STYLE  | {physicalAppearance.FacialHairStyle,-31} |");
+            Console.WriteLine($"\t\t\t| SKIN WRINKLES\t     | {physicalAppearance.IsSkinWrinkles,-31} |");
+            Console.WriteLine($"\t\t\t| SCAR\t\t     | {physicalAppearance.IsScar,-31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| OUTFIT SET\t     | {clothesAccessories.OutfitSet, -31} |");
+            Console.WriteLine($"\t\t\t| TOP CLOTHING\t     | {clothesAccessories.TopClothing,-31} |");
+            Console.WriteLine($"\t\t\t| BOTTOM CLOTHING    | {clothesAccessories.BottomClothing,-31} |");
+            Console.WriteLine($"\t\t\t| FOOT WEAR\t     | {clothesAccessories.FootWear,-31} |");
+            Console.WriteLine($"\t\t\t| ACCESSORIES\t     | {clothesAccessories.Accessories,-31} |");
+            Console.WriteLine($"\t\t\t| TATTOO\t     | {clothesAccessories.IsTattoo,-31} |");
+            Console.WriteLine($"\t\t\t| AURA\t\t     | {clothesAccessories.IsAura,-31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| MELEE WEAPON\t     | {weaponsAttacks.MeleeWeapon, -31} |");
+            Console.WriteLine($"\t\t\t| FIGHTING STYLE     | {weaponsAttacks.FightingStyle, -31} |");
+            Console.WriteLine($"\t\t\t| STANCE\t     | {weaponsAttacks.Stance, -31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| ATTACK POWER\t     | {stats.AttackPower, -31} |");
+            Console.WriteLine($"\t\t\t| DEFENSE\t     | {stats.Defense,-31} |");
+            Console.WriteLine($"\t\t\t| SPEED\t\t     | {stats.Speed,-31} |");
+            Console.WriteLine($"\t\t\t| STAMINA\t     | {stats.Stamina,-31} |");
+            Console.WriteLine($"\t\t\t| HEALTH\t     | {stats.Health,-31} |");
+            Console.WriteLine($"\t\t\t| SPECIAL METER GAIN | {stats.SpecialMeterGain,-31} |");
+            Console.WriteLine($"\t\t\t+--------------------+---------------------------------+\n");
+        }
     }
 }

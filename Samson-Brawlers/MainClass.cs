@@ -27,7 +27,7 @@ namespace Samson_Brawlers
                 switch (menuChoice)
                 {
                     case "1":
-                        main.CreateCharacter();
+                        main.NewGame();
                         break;
                     case "2":
                         main.LoadGame();
@@ -39,7 +39,7 @@ namespace Samson_Brawlers
                         credits.Display();
                         break;
                     case "0":
-                        Console.WriteLine("\t\t\t\t\t\tEXITED!");
+                        Console.WriteLine("\n\t\t\t\t\t\tEXITED!\n");
                         isGameRunning = false;
                         break;
                 }
@@ -76,7 +76,7 @@ namespace Samson_Brawlers
             Console.WriteLine("+=======================================================================================================+\n");
         }
 
-        public void CreateCharacter()
+        public void NewGame()
         {
             Character character = new Character();
 
@@ -118,11 +118,9 @@ namespace Samson_Brawlers
 
             character.GetBiographyInput();
 
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine("\t\t\t .");
-                Thread.Sleep(800);
-            }
+            LoadingAnimation(3);
+
+            character.DisplayAllInfo();
 
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
@@ -130,50 +128,10 @@ namespace Samson_Brawlers
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
 
-            Console.WriteLine("\n\n\nData:");
-            Console.WriteLine("\nPHYSICAL APPEARANCE");
-            Console.WriteLine("GENDER: " + character.physicalAppearance.Gender);
-            Console.WriteLine("BODY TYPE: " + character.physicalAppearance.BodyType);
-            Console.WriteLine("HEIGHT: " + character.physicalAppearance.Height);
-            Console.WriteLine("SKIN COLOR: " + character.physicalAppearance.SkinColor);
-            Console.WriteLine("SKIN WRINKLES: " + character.physicalAppearance.IsSkinWrinkles);
-            Console.WriteLine("HAIR STYLE: " + character.physicalAppearance.HairStyle);
-            Console.WriteLine("HAIR COLOR: " + character.physicalAppearance.HairColor);
-            Console.WriteLine("HEAD SHAPE: " + character.physicalAppearance.HeadShape);
-            Console.WriteLine("EYE SHAPE: " + character.physicalAppearance.EyeShape);
-            Console.WriteLine("EYE COLOR: " + character.physicalAppearance.EyeColor);
-            Console.WriteLine("FACIAL HAIR STYLE: " + character.physicalAppearance.FacialHairStyle);
-
-            Console.WriteLine("\nCLOTHING & ACCESSORIES");
-            Console.WriteLine("OUTFIT SET: " + character.clothesAccessories.OutfitSet);
-            Console.WriteLine("TOP CLOTHING: " + character.clothesAccessories.TopClothing);
-            Console.WriteLine("BOTTOM CLOTHING: " + character.clothesAccessories.BottomClothing);
-            Console.WriteLine("FOOTWEAR: " + character.clothesAccessories.FootWear);
-            Console.WriteLine("ACCESSORIES: " + character.clothesAccessories.Accessories);
-            Console.WriteLine("TATTOO: " + character.clothesAccessories.IsTattoo);
-            Console.WriteLine("SCAR: " + character.physicalAppearance.IsScar);
-            Console.WriteLine("AURA: " + character.clothesAccessories.IsAura);
-
-            Console.WriteLine("\nWEAPONS & ATTACKS");
-            Console.WriteLine("MELEE WEAPON: " + character.weaponsAttacks.MeleeWeapon);
-            Console.WriteLine("FIGHTING STYLE: " + character.weaponsAttacks.FightingStyle);
-            Console.WriteLine("STANCE: " + character.weaponsAttacks.Stance);
-
-            List<int> stats = character.stats.GetStatsValue();
-
-            Console.WriteLine("\nSTATISTICS");
-            Console.WriteLine("ATTACK POWER: " + stats[0]);
-            Console.WriteLine("DEFENSE: " + stats[1]);
-            Console.WriteLine("SPEED: " + stats[2]);
-            Console.WriteLine("STAMINA: " + stats[3]);
-            Console.WriteLine("HEALTH: " + stats[4]);
-            Console.WriteLine("SPECIAL METER GAIN: " + stats[5]);
-
-            Console.WriteLine("\nBIOGRAPHY");
-            Console.WriteLine("NAME: " + character.Name);
-            Console.WriteLine("TITLE: " + character.Title);
-
             characters.Add( character );
+            Console.WriteLine("\n\t\t\tPress \"ENTER\" to Go Back to Main Menu...");
+            while (Console.ReadKey(true).Key != ConsoleKey.Enter) ;
+            Console.Clear();
         }
 
         public void LoadGame()
@@ -182,6 +140,35 @@ namespace Samson_Brawlers
             for( int i = 0; i < characters.Count; i++ )
             {
                 Console.WriteLine("- " + characters[i].Name);
+            }
+        }
+
+        public void LoadingAnimation(int seconds)
+        {
+            string[] graphics = 
+                [
+                    "\t\t\t\t\t\t /",
+                    "\t\t\t\t\t\t -",
+                    "\t\t\t\t\t\t \\",
+                    "\t\t\t\t\t\t |",
+                    "\t\t\t\t\t\t /",
+                    "\t\t\t\t\t\t -",
+                    "\t\t\t\t\t\t \\",
+                    "\t\t\t\t\t\t |"
+                ];
+
+            int loopCount = (seconds * 1000) / 300;
+
+            for(int i = 0; i < seconds * 1.5; i++)
+            {
+                foreach(string graphic in graphics)
+                {
+                    Console.WriteLine(
+                        );
+                    Console.WriteLine(graphic);
+                    Thread.Sleep(100);
+                    Console.Clear();
+                }
             }
         }
     }
