@@ -136,11 +136,9 @@ namespace Samson_Brawlers
 
         public void LoadGame()
         {
-            Console.WriteLine("LIST OF CHARACTERS: \n");
-            for( int i = 0; i < characters.Count; i++ )
-            {
-                Console.WriteLine("- " + characters[i].Name);
-            }
+            Database database = new Database();
+
+            database.InsertNewCharacter();
         }
 
         public void LoadingAnimation(int seconds)
@@ -163,8 +161,7 @@ namespace Samson_Brawlers
             {
                 foreach(string graphic in graphics)
                 {
-                    Console.WriteLine(
-                        );
+                    Console.WriteLine();
                     Console.WriteLine(graphic);
                     Thread.Sleep(100);
                     Console.Clear();
