@@ -15,8 +15,8 @@ namespace Samson_Brawlers
         private string eyeShape;
         private string eyeColor;
         private string facialHairStyle;
-        private bool isSkinWrinkles;
-        private bool isScar;
+        private int isSkinWrinkles;
+        private int isScar;
         
         public string Gender { get { return gender; } set { gender = value; } }
         public string BodyType { get { return bodyType; } set { bodyType = value; } }
@@ -28,13 +28,11 @@ namespace Samson_Brawlers
         public string EyeShape { get { return eyeShape; } set { eyeShape = value; } }   
         public string EyeColor { get { return eyeColor; } set {eyeColor = value; } }
         public string FacialHairStyle { get { return facialHairStyle; } set { facialHairStyle = value; } }
-        public bool IsSkinWrinkles { get { return isSkinWrinkles; } set {isSkinWrinkles = value; } }
-        public bool IsScar {  get { return isScar; } set { isScar = value; } }
+        public int IsSkinWrinkles { get { return isSkinWrinkles; } set {isSkinWrinkles = value; } }
+        public int IsScar {  get { return isScar; } set { isScar = value; } }
 
         public void GetInput()
         {
-
-
             gender = MultipleChoiceInput("CHOOSE A GENDER:", ["MALE", "FEMALE"]);
 
             bodyType = MultipleChoiceInput("CHOOSE A BODY TYPE:", 
@@ -47,9 +45,9 @@ namespace Samson_Brawlers
                     ]);
             height = MultipleChoiceInput("CHOOSE THE CHARACTERS HEIGHT:",
                     [
-                        "SMALL (3'0 - 5'0)",
-                        "AVERAGE (5'5 - 6'0)",
-                        "TALL (6'5 - 7'5)"
+                        "SMALL (3 - 5 ft)",
+                        "AVERAGE (5.5 - 6 ft)",
+                        "TALL (6.5 - 7.5 ft)"
                     ]);
 
             skinColor = MultipleChoiceInput("CHOOSE A SKIN TONE/COLOR:",

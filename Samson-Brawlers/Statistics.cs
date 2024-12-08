@@ -146,7 +146,7 @@ namespace Samson_Brawlers
                     InputHandler inputHandler = new InputHandler();
                     if (availablePts == 0)
                     {
-                        if (!inputHandler.MultipleChoiceInput("SAVE YOUR STATS:"))
+                        if (inputHandler.MultipleChoiceInput("SAVE YOUR STATS:") == 0)
                         {
                             Console.Clear();
                             DisplayStats(stats);
@@ -215,7 +215,8 @@ namespace Samson_Brawlers
             Console.WriteLine("\t\t \t Enter \"+\" add or \"-\" to minus");
             Console.WriteLine("\t\t \t Then enter the value of the points.");
             Console.WriteLine("\t\t \t (eg. 1+2, 3-1)\n");
-            Console.WriteLine("\t\t\t Press \"R\" to Reset Values\n");
+            Console.WriteLine("\t\t\t Press \"R\" to Reset Values");
+            Console.WriteLine("\t\t\t Maximum of 10 points per Stat\n");
         }
 
         public void SetStatsValues(List<int> stats)

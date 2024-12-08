@@ -33,4 +33,12 @@ namespace Samson_Brawlers
 
         }
     }
+
+    public class ValueAlreadyExistException : Exception
+    {
+        public ValueAlreadyExistException(string message = "\n\t\t\t INVALID INPUT, NAME ALREADY EXISTS!\n") : base(message)
+        {
+
+        }
+    }
 }

@@ -15,13 +15,13 @@ namespace Samson_Brawlers
 
         public Database()
         {
-
             connectionString = $"server={serverName};uid={usernameId};pwd={password};database={databaseName}";
             connection = new MySqlConnection();
             connection.ConnectionString = connectionString;
         }
-        public void GetAllCharacters()
+        public List<string> GetAllCharacters()
         {
+            List<string> listOfCharName = new List<string>();
             try
             {
                 connection.Open();
@@ -30,22 +30,11 @@ namespace Samson_Brawlers
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-
-                Console.WriteLine("\t\t\t+------------------------------------------------------+");
-                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-                Console.WriteLine("\t\t\t|\t\t   LIST OF CHARACTERS\t\t       |");
-                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-                Console.WriteLine("\t\t\t+------------------------------------------------------+");
-
-                List<string> listOfCharName = new List<string>();
-                int index = 0;
                 while (reader.Read())
                 {
-                    Console.WriteLine($"\t\t\t| {index} ->  {reader["name"], -46}|");
-                    index++;
                     listOfCharName.Add(reader["name"].ToString());        
                 }
-
+                
                 reader.Close();
                 connection.Close();
             }
@@ -53,28 +42,112 @@ namespace Samson_Brawlers
             {
                 Console.WriteLine(e.Message);
             }
+
+            return listOfCharName;
         }
 
-        public void InsertNewCharacter()
+        public List<string> GetSpecificCharacterInfo(string name)
         {
+            List<string> lisOfCharacterInfo = new List<string>();
             try
             {
                 connection.Open();
-                string query = "INSERT INTO characters (name, title, gender, bodyType, height, skinColor, hairStyle, hairColor, headShape, " +
-                    "eyeShape, eyeColor, facialHairStyle, skinWrinkles, scar, outfitSet, topClothing, bottomClothing, footWear, accessories, " +
-                    "tattoo, aura, meleeWeapon, fightingStyle, stance, attackPower, defense, speed, stamina, health, specialMeterGain) " +
-                    "VALUES ('shibal', 'aigoo', 'sad', 'ada', 'dad', 'ada', 'ada', 'ada', 'ada', 'ada', 'ada', 'ada', 1, 0, 'adaw', 'ada', 'ada'," +
-                    " 'ada', 'adaw', 1, 1, 'adwad', 'dawdwa', 'adaw', 10, 5, 3, 5, 2, 1);";
+                string query = $"SELECT * FROM characters WHERE name='{name}';";
+                MySqlCommand cmd = new MySqlCommand( query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    lisOfCharacterInfo.Add(reader["name"].ToString());
+                    lisOfCharacterInfo.Add(reader["title"].ToString());
+                    lisOfCharacterInfo.Add(reader["gender"].ToString());
+                    lisOfCharacterInfo.Add(reader["bodyType"].ToString());
+                    lisOfCharacterInfo.Add(reader["height"].ToString());
+                    lisOfCharacterInfo.Add(reader["skinColor"].ToString());
+                    lisOfCharacterInfo.Add(reader["hairStyle"].ToString());
+                    lisOfCharacterInfo.Add(reader["hairColor"].ToString());
+                    lisOfCharacterInfo.Add(reader["headShape"].ToString());
+                    lisOfCharacterInfo.Add(reader["eyeShape"].ToString());
+                    lisOfCharacterInfo.Add(reader["eyeColor"].ToString());
+                    lisOfCharacterInfo.Add(reader["facialHairStyle"].ToString());
+                    lisOfCharacterInfo.Add(reader["skinWrinkles"].ToString());
+                    lisOfCharacterInfo.Add(reader["scar"].ToString());
+                    lisOfCharacterInfo.Add(reader["outfitSet"].ToString());
+                    lisOfCharacterInfo.Add(reader["topClothing"].ToString());
+                    lisOfCharacterInfo.Add(reader["bottomClothing"].ToString());
+                    lisOfCharacterInfo.Add(reader["footWear"].ToString());
+                    lisOfCharacterInfo.Add(reader["accessories"].ToString());
+                    lisOfCharacterInfo.Add(reader["tattoo"].ToString());
+                    lisOfCharacterInfo.Add(reader["aura"].ToString());
+                    lisOfCharacterInfo.Add(reader["meleeWeapon"].ToString());
+                    lisOfCharacterInfo.Add(reader["fightingStyle"].ToString());
+                    lisOfCharacterInfo.Add(reader["stance"].ToString());
+                    lisOfCharacterInfo.Add(reader["attackPower"].ToString());
+                    lisOfCharacterInfo.Add(reader["defense"].ToString());
+                    lisOfCharacterInfo.Add(reader["speed"].ToString());
+                    lisOfCharacterInfo.Add(reader["stamina"].ToString());
+                    lisOfCharacterInfo.Add(reader["health"].ToString());
+                    lisOfCharacterInfo.Add(reader["specialMeterGain"].ToString());
+                }
+
+                reader.Close();
+                connection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return lisOfCharacterInfo;
+        }
+
+        public bool InsertNewCharacter(Character character)
+        {
+            bool isSuccessful = false;
+            try
+            {
+                connection.Open();
+                string query = $"INSERT INTO characters (name, title, gender, bodyType, height, skinColor, hairStyle, hairColor, headShape, " +
+                    $"eyeShape, eyeColor, facialHairStyle, skinWrinkles, scar, outfitSet, topClothing, bottomClothing, footWear, accessories, " +
+                    $"tattoo, aura, meleeWeapon, fightingStyle, stance, attackPower, defense, speed, stamina, health, specialMeterGain) " +
+                    $"VALUES ('{character.Name}', '{character.Title}', '{character.physicalAppearance.Gender}', '{character.physicalAppearance.BodyType}', '{character.physicalAppearance.Height}', '{character.physicalAppearance.SkinColor}'," +
+                    $" '{character.physicalAppearance.HairStyle}', '{character.physicalAppearance.HairColor}', '{character.physicalAppearance.HeadShape}', '{character.physicalAppearance.EyeShape}'," +
+                    $" '{character.physicalAppearance.EyeColor}', '{character.physicalAppearance.FacialHairStyle}', {character.physicalAppearance.IsSkinWrinkles}," +
+                    $" {character.physicalAppearance.IsScar}, '{character.clothesAccessories.OutfitSet}', '{character.clothesAccessories.TopClothing}'," +
+                    $" '{character.clothesAccessories.BottomClothing}', '{character.clothesAccessories.FootWear}', '{character.clothesAccessories.Accessories}'," +
+                    $" {character.clothesAccessories.IsTattoo}, {character.clothesAccessories.IsAura}, '{character.weaponsAttacks.MeleeWeapon}', '{character.weaponsAttacks.FightingStyle}'," +
+                    $" '{character.weaponsAttacks.Stance}', {character.stats.AttackPower}, {character.stats.Defense}, {character.stats.Speed}, {character.stats.Stamina}, {character.stats.Health}, {character.stats.SpecialMeterGain});";
 
                 MySqlCommand cmd = new MySqlCommand( query, connection);
 
                 if(cmd.ExecuteNonQuery() == 1)
                 {
-                    Console.WriteLine("Added!");
+                    isSuccessful = true;
                 }
-                else
+                
+
+                connection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return isSuccessful;
+        }
+
+        public bool DeleteCharacter(string name)
+        {
+            bool isDeleteSuccessful = false;
+            try
+            {
+                connection.Open();
+                string query = $"DELETE FROM characters WHERE name='{name}';";
+                MySqlCommand cmd = new MySqlCommand ( query, connection);
+                
+                if (cmd.ExecuteNonQuery() == 1)
                 {
-                    Console.WriteLine("Error!");
+                    isDeleteSuccessful = true;
                 }
 
                 connection.Close();
@@ -83,16 +156,33 @@ namespace Samson_Brawlers
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return isDeleteSuccessful; 
         }
 
-        public void DeleteCharacter()
+        public bool CheckIfValueAlreadyExist(string colName, string value)
         {
+            bool isExisting = false;
+            try
+            {
+                connection.Open();
+                string query = $"SELECT {colName} FROM characters WHERE {colName}='{value}';";
+                MySqlCommand cmd = new MySqlCommand (query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
 
-        }
+                if(reader.Read())
+                {
+                    isExisting = true;
+                }
 
-        public void DisplaySelectedCharacter()
-        {
+                connection.Close();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            return isExisting;
         }
     }
 }

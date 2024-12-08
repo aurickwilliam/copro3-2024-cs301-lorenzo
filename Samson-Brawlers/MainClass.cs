@@ -79,6 +79,7 @@ namespace Samson_Brawlers
         public void NewGame()
         {
             Character character = new Character();
+            Database database = new Database();
 
             Console.WriteLine("\n\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
@@ -119,14 +120,23 @@ namespace Samson_Brawlers
             character.GetBiographyInput();
 
             LoadingAnimation(3);
-
-            character.DisplayAllInfo();
-
-            Console.WriteLine("\t\t\t+------------------------------------------------------+");
-            Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-            Console.WriteLine("\t\t\t|\t     CHARACTER CREATED SUCCESSFULLY!\t       |");
-            Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
-            Console.WriteLine("\t\t\t+------------------------------------------------------+");
+            if (database.InsertNewCharacter(character))
+            {
+                Console.WriteLine("\t\t\t+------------------------------------------------------+");
+                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                Console.WriteLine("\t\t\t|\t     CHARACTER CREATED SUCCESSFULLY!\t       |");
+                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                Console.WriteLine("\t\t\t+------------------------------------------------------+");
+                character.DisplayAllInfo();
+            }
+            else
+            {
+                Console.WriteLine("\t\t\t+------------------------------------------------------+");
+                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                Console.WriteLine("\t\t\t|\t       CHARACTER CREATION FAILED!\t       |");
+                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                Console.WriteLine("\t\t\t+------------------------------------------------------+");
+            }            
 
             characters.Add( character );
             Console.WriteLine("\n\t\t\tPress \"ENTER\" to Go Back to Main Menu...");
@@ -137,10 +147,75 @@ namespace Samson_Brawlers
         public void LoadGame()
         {
             Database database = new Database();
+            LoadGameFunctions load = new LoadGameFunctions();
+            bool isLoadGameRunning = true;
+            do
+            {
+                Console.WriteLine("\t\t\t+------------------------------------------------------+");
+                Console.WriteLine("\t\t\t| \t\tSELECT AN OPERATION\t\t       |");
+                Console.WriteLine("\t\t\t+------------------------------------------------------+");
+                Console.WriteLine("\t\t\t| 1 -> DISPLAY CHARACTER INFO\t\t\t       |");
+                Console.WriteLine("\t\t\t| 2 -> DELETE A CHARACTER\t\t\t       |");
+                Console.WriteLine("\t\t\t| 0 -> GO BACK\t\t\t\t\t       |");
+                Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
 
-            database.InsertNewCharacter();
+                int input;
+                do
+                {
+                    try
+                    {
+                        Console.Write("\t\t\t  -> ");
+                        input = Convert.ToInt32(Console.ReadLine());
+
+                        if (input < 0)
+                        {
+                            throw new InputNotAChoiceException();
+                        }
+                        else if (input > 3)
+                        {
+                            throw new InputNotAChoiceException();
+                        }
+
+                        break;
+                    }
+                    catch (FormatException ex)
+                    {
+                        Console.WriteLine("\n\t\t\t  PLEASE ENTER A NUMBER VALUE!\n");
+                    }
+                    catch (InputNotAChoiceException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                while (true);
+
+                Console.Clear();
+
+                switch (input)
+                {
+                    case 1:
+                        if (!load.GetSelectedCharacter(database))
+                        {
+                            break;
+                        }
+                        load.DisplayCharacterInfo(database);
+                        break;
+                    case 2:
+                        if (!load.GetSelectedCharacter(database))
+                        {
+                            break;
+                        }
+                        load.DeleteSelectedCharacter(database);
+                        break;
+                    case 0:
+                        isLoadGameRunning = false;
+                        break;
+                }
+                Console.Clear();
+            }
+            while (isLoadGameRunning);
         }
-
+        
         public void LoadingAnimation(int seconds)
         {
             string[] graphics = 

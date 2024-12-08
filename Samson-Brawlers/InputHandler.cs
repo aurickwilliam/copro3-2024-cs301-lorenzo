@@ -8,9 +8,10 @@ namespace Samson_Brawlers
         public string MenuInput()
         {
             string input = "";
-                
+
+
             do
-            {
+            { 
                 try
                 {
                     Console.Write("\t\t\t\t\t-> ");
@@ -148,7 +149,7 @@ namespace Samson_Brawlers
             return choices[inputInt - 1];
         }
 
-        public bool MultipleChoiceInput(string question)
+        public int MultipleChoiceInput(string question)
         {
             string[] choices = ["YES", "NO"];
 
@@ -202,16 +203,17 @@ namespace Samson_Brawlers
 
             Console.Clear();
 
-            return inputInt == 1;
+            return inputInt == 1 ? 1 : 0;
         }
 
 
-        public string TextInput(string question, int maxChar, int minChar, bool hasSpecialChar, bool isAlphanumeric)
+        public string TextInput(string question, int maxChar, int minChar, bool hasSpecialChar, bool isAlphanumeric, string type)
         {
             string input = "";
 
             string specialChar = hasSpecialChar ? "/" : "X";
             string alphanumeric = isAlphanumeric ? "/" : "X";
+            Database database = new Database();
 
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
@@ -268,6 +270,19 @@ namespace Samson_Brawlers
                         }
                     }
 
+                    if(type == "name")
+                    {
+                        if(database.CheckIfValueAlreadyExist("name", input))
+                        {
+                            throw new ValueAlreadyExistException();
+                        }
+                    }
+                    else if (type == "title")
+                    {
+                        input = input.Replace("'", "\\'");
+                        input = input.Replace("\"", "\\\"");
+                    }
+
                     break;
                 }
                 catch (InvalidCharacterException ex)
@@ -275,6 +290,10 @@ namespace Samson_Brawlers
                     Console.WriteLine(ex.Message);
                 }
                 catch (InvalidInputException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (ValueAlreadyExistException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }

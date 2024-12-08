@@ -15,7 +15,7 @@ namespace Samson_Brawlers
             string skinColor, string hairStyle, string hairColor, string headShape, string eyeShape,
             string eyeColor, string facialHairStyle, string outfitSet, string topClothing, 
             string bottomClothing, string footWear, string accessories, string meleeWeapon, string fightingStyle, 
-            string stance, bool isSkinWrinkles, bool isTattoo, bool isScar, bool isAura, int attackPower,
+            string stance, int isSkinWrinkles, int isTattoo, int isScar, int isAura, int attackPower,
             int defense, int speed, int stamina, int health, int specialMeterGain) 
         { 
             this.name = name;
@@ -57,8 +57,8 @@ namespace Samson_Brawlers
 
         public void GetBiographyInput()
         {
-            name = inputHandler.TextInput("ENTER YOUR CHARACTERS NAME:", 25, 8, false, true);
-            title = inputHandler.TextInput("ENTER YOUR CHARACTERS TITLE:", 30, 8, true, true);
+            name = inputHandler.TextInput("ENTER YOUR CHARACTERS NAME:", 25, 8, false, true, "name");
+            title = inputHandler.TextInput("ENTER YOUR CHARACTERS TITLE:", 30, 8, true, true, "title");
         }
 
         public void DisplayAllInfo()
@@ -67,7 +67,7 @@ namespace Samson_Brawlers
             Console.WriteLine("\t\t\t|\t\t CHARACTER INFORMATION\t\t       |");
             Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
             Console.WriteLine($"\t\t\t| NAME\t\t     | {name, -31} |");
-            Console.WriteLine($"\t\t\t| TITLE\t\t     | {title,-31} |");
+            Console.WriteLine($"\t\t\t| TITLE\t\t     | {title.Replace("\\", ""),-31} |");
             Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
             Console.WriteLine($"\t\t\t| GENDER\t     | {physicalAppearance.Gender,-31} |");
             Console.WriteLine($"\t\t\t| BODY TYPE\t     | {physicalAppearance.BodyType,-31} |");
@@ -79,16 +79,16 @@ namespace Samson_Brawlers
             Console.WriteLine($"\t\t\t| EYE SHAPE\t     | {physicalAppearance.EyeShape,-31} |");
             Console.WriteLine($"\t\t\t| EYE COLOR\t     | {physicalAppearance.EyeColor,-31} |");
             Console.WriteLine($"\t\t\t| FACIAL HAIR STYLE  | {physicalAppearance.FacialHairStyle,-31} |");
-            Console.WriteLine($"\t\t\t| SKIN WRINKLES\t     | {physicalAppearance.IsSkinWrinkles,-31} |");
-            Console.WriteLine($"\t\t\t| SCAR\t\t     | {physicalAppearance.IsScar,-31} |");
+            Console.WriteLine($"\t\t\t| SKIN WRINKLES\t     | {(physicalAppearance.IsSkinWrinkles == 1 ? "True" : "False"),-31} |");
+            Console.WriteLine($"\t\t\t| SCAR\t\t     | {(physicalAppearance.IsScar == 1 ? "True" : "False"),-31} |");
             Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
             Console.WriteLine($"\t\t\t| OUTFIT SET\t     | {clothesAccessories.OutfitSet, -31} |");
             Console.WriteLine($"\t\t\t| TOP CLOTHING\t     | {clothesAccessories.TopClothing,-31} |");
             Console.WriteLine($"\t\t\t| BOTTOM CLOTHING    | {clothesAccessories.BottomClothing,-31} |");
             Console.WriteLine($"\t\t\t| FOOT WEAR\t     | {clothesAccessories.FootWear,-31} |");
             Console.WriteLine($"\t\t\t| ACCESSORIES\t     | {clothesAccessories.Accessories,-31} |");
-            Console.WriteLine($"\t\t\t| TATTOO\t     | {clothesAccessories.IsTattoo,-31} |");
-            Console.WriteLine($"\t\t\t| AURA\t\t     | {clothesAccessories.IsAura,-31} |");
+            Console.WriteLine($"\t\t\t| TATTOO\t     | {(clothesAccessories.IsTattoo == 1 ? "True" : "False"),-31} |");
+            Console.WriteLine($"\t\t\t| AURA\t\t     | {(clothesAccessories.IsAura == 1 ? "True" : "False"),-31} |");
             Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
             Console.WriteLine($"\t\t\t| MELEE WEAPON\t     | {weaponsAttacks.MeleeWeapon, -31} |");
             Console.WriteLine($"\t\t\t| FIGHTING STYLE     | {weaponsAttacks.FightingStyle, -31} |");

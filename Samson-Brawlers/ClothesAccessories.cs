@@ -9,16 +9,16 @@ namespace Samson_Brawlers
         private string bottomClothing;
         private string footWear;
         private string accessories;
-        private bool isTattoo;
-        private bool isAura;
+        private int isTattoo;
+        private int isAura;
 
         public string OutfitSet { get { return outfitSet; } set { outfitSet = value; } }
         public string TopClothing { get { return topClothing; } set { topClothing = value; } }
         public string BottomClothing { get {return bottomClothing; } set { bottomClothing = value; } }
         public string FootWear { get { return footWear; } set { footWear = value; } }
         public string Accessories { get { return accessories; } set { accessories = value; } }
-        public bool IsTattoo { get { return isTattoo; } set { isTattoo = value; } }
-        public bool IsAura { get { return isAura; } set { isAura = value; } }
+        public int IsTattoo { get { return isTattoo; } set { isTattoo = value; } }
+        public int IsAura { get { return isAura; } set { isAura = value; } }
         
         public void GetInput()
         {
