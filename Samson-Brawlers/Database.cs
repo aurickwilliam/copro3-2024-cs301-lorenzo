@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 
 namespace Samson_Brawlers
@@ -183,6 +184,65 @@ namespace Samson_Brawlers
             }
 
             return isExisting;
+        }
+
+        public List<List<string>> GetAllCharacterInfo()
+        {
+            List<List<string>> allCharacterList = new List<List<string>>();
+
+            try
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM characters;";
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    List<string> characterList = new List<string>();
+                    characterList.Add(reader["name"].ToString());
+                    characterList.Add(reader["title"].ToString());
+                    characterList.Add(reader["gender"].ToString());
+                    characterList.Add(reader["bodyType"].ToString());
+                    characterList.Add(reader["height"].ToString());
+                    characterList.Add(reader["skinColor"].ToString());
+                    characterList.Add(reader["hairStyle"].ToString());
+                    characterList.Add(reader["hairColor"].ToString());
+                    characterList.Add(reader["headShape"].ToString());
+                    characterList.Add(reader["eyeShape"].ToString());
+                    characterList.Add(reader["eyeColor"].ToString());
+                    characterList.Add(reader["facialHairStyle"].ToString());
+                    characterList.Add(reader["skinWrinkles"].ToString());
+                    characterList.Add(reader["scar"].ToString());
+                    characterList.Add(reader["outfitSet"].ToString());
+                    characterList.Add(reader["topClothing"].ToString());
+                    characterList.Add(reader["bottomClothing"].ToString());
+                    characterList.Add(reader["footWear"].ToString());
+                    characterList.Add(reader["accessories"].ToString());
+                    characterList.Add(reader["tattoo"].ToString());
+                    characterList.Add(reader["aura"].ToString());
+                    characterList.Add(reader["meleeWeapon"].ToString());
+                    characterList.Add(reader["fightingStyle"].ToString());
+                    characterList.Add(reader["stance"].ToString());
+                    characterList.Add(reader["attackPower"].ToString());
+                    characterList.Add(reader["defense"].ToString());
+                    characterList.Add(reader["speed"].ToString());
+                    characterList.Add(reader["stamina"].ToString());
+                    characterList.Add(reader["health"].ToString());
+                    characterList.Add(reader["specialMeterGain"].ToString());
+                    allCharacterList.Add(characterList);
+                }
+
+                reader.Close();
+                connection.Close();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return allCharacterList;
         }
     }
 }

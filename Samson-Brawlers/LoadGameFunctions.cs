@@ -1,6 +1,4 @@
-﻿using Org.BouncyCastle.Crypto.Generators;
-using System;
-using System.Xml.Linq;
+﻿using System;
 
 namespace Samson_Brawlers
 {
@@ -18,9 +16,16 @@ namespace Samson_Brawlers
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
 
-            for (int i = 0; i < names.Count; i++)
+            if (!(names.Count == 0))
             {
-                Console.WriteLine($"\t\t\t| {i + 1} ->  {names[i], -46} |");
+                for (int i = 0; i < names.Count; i++)
+                {
+                    Console.WriteLine($"\t\t\t| {i + 1} ->  {names[i],-46} |");
+                }
+            }
+            else 
+            {
+                Console.WriteLine("\t\t\t| NO CHARACTERS AVAILABLE\t\t\t       |");
             }
             Console.WriteLine($"\t\t\t| 0 ->  {"GO BACK", -46} |");
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
@@ -112,6 +117,64 @@ namespace Samson_Brawlers
             Console.Clear();
         }
 
+        public void DisplayAllInfoAllCharacters(Database database)
+        {
+            List<List<string>> allCharacterList = database.GetAllCharacterInfo();
+
+            for (int index = 0; index < allCharacterList.Count; index++)
+            {
+                DisplayCharacterInfo(allCharacterList[index], index + 1);
+                Console.WriteLine("\n+=======================================================================================================+\n");
+            }
+
+            Console.WriteLine("\t\t\t Press 'Enter' to Go Back...");
+            while (Console.ReadKey(true).Key != ConsoleKey.Enter) ;
+            Console.Clear();
+        }
+
+        public void DisplayCharacterInfo(List<string> character, int index)
+        {
+            Console.WriteLine("\t\t\t+------------------------------------------------------+");
+            Console.WriteLine($"\t\t\t|\t       CHARACTER #{index} INFORMATION\t\t       |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| NAME\t\t     | {character[0],-31} |");
+            Console.WriteLine($"\t\t\t| TITLE\t\t     | {character[1],-31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| GENDER\t     | {character[2],-31} |");
+            Console.WriteLine($"\t\t\t| BODY TYPE\t     | {character[3],-31} |");
+            Console.WriteLine($"\t\t\t| HEIGHT\t     | {character[4],-31} |");
+            Console.WriteLine($"\t\t\t| SKIN COLOR\t     | {character[5],-31} |");
+            Console.WriteLine($"\t\t\t| HAIR STYLE\t     | {character[6],-31} |");
+            Console.WriteLine($"\t\t\t| HAIR COLOR\t     | {character[7],-31} |");
+            Console.WriteLine($"\t\t\t| HEAD SHAPE\t     | {character[8],-31} |");
+            Console.WriteLine($"\t\t\t| EYE SHAPE\t     | {character[9],-31} |");
+            Console.WriteLine($"\t\t\t| EYE COLOR\t     | {character[10],-31} |");
+            Console.WriteLine($"\t\t\t| FACIAL HAIR STYLE  | {character[11],-31} |");
+            Console.WriteLine($"\t\t\t| SKIN WRINKLES\t     | {(character[12] == "1" ? "True" : "False"),-31} |");
+            Console.WriteLine($"\t\t\t| SCAR\t\t     | {(character[13] == "1" ? "True" : "False"),-31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| OUTFIT SET\t     | {character[14],-31} |");
+            Console.WriteLine($"\t\t\t| TOP CLOTHING\t     | {character[15],-31} |");
+            Console.WriteLine($"\t\t\t| BOTTOM CLOTHING    | {character[16],-31} |");
+            Console.WriteLine($"\t\t\t| FOOT WEAR\t     | {character[17],-31} |");
+            Console.WriteLine($"\t\t\t| ACCESSORIES\t     | {character[18],-31} |");
+            Console.WriteLine($"\t\t\t| TATTOO\t     | {(character[19] == "1" ? "True" : "False"),-31} |");
+            Console.WriteLine($"\t\t\t| AURA\t\t     | {(character[20] == "1" ? "True" : "False"),-31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| MELEE WEAPON\t     | {character[21],-31} |");
+            Console.WriteLine($"\t\t\t| FIGHTING STYLE     | {character[22],-31} |");
+            Console.WriteLine($"\t\t\t| STANCE\t     | {character[23],-31} |");
+            Console.WriteLine("\t\t\t+--------------------+---------------------------------+");
+            Console.WriteLine($"\t\t\t| ATTACK POWER\t     | {character[24],-31} |");
+            Console.WriteLine($"\t\t\t| DEFENSE\t     | {character[25],-31} |");
+            Console.WriteLine($"\t\t\t| SPEED\t\t     | {character[26],-31} |");
+            Console.WriteLine($"\t\t\t| STAMINA\t     | {character[27],-31} |");
+            Console.WriteLine($"\t\t\t| HEALTH\t     | {character[28],-31} |");
+            Console.WriteLine($"\t\t\t| SPECIAL METER GAIN | {character[29],-31} |");
+            Console.WriteLine($"\t\t\t+--------------------+---------------------------------+");
+
+        }
+
         public void DeleteSelectedCharacter(Database database)
         {
             Console.WriteLine("\t\t\t+------------------------------------------------------+");
@@ -149,5 +212,6 @@ namespace Samson_Brawlers
             }
             Console.Clear();
         }
+
     }
 }

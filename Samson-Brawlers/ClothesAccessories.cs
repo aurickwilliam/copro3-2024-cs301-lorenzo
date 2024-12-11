@@ -81,7 +81,7 @@ namespace Samson_Brawlers
 
             isTattoo = MultipleChoiceInput("ADD CHARACTERS TATTOO:");
 
-            isAura = MultipleChoiceInput("ENABLE SCAR APPEARANCE:");
+            isAura = MultipleChoiceInput("ENABLE AURA APPEARANCE:");
         }
     }
 }

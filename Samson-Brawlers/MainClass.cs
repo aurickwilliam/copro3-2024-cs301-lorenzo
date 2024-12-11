@@ -81,7 +81,7 @@ namespace Samson_Brawlers
             Character character = new Character();
             Database database = new Database();
 
-            Console.WriteLine("\n\t\t\t+------------------------------------------------------+");
+            Console.WriteLine("\t\t\t+------------------------------------------------------+");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
             Console.WriteLine("\t\t\t|\t\tCREATE YOUR OWN CHARACTER\t       |");
             Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
@@ -154,8 +154,9 @@ namespace Samson_Brawlers
                 Console.WriteLine("\t\t\t+------------------------------------------------------+");
                 Console.WriteLine("\t\t\t| \t\tSELECT AN OPERATION\t\t       |");
                 Console.WriteLine("\t\t\t+------------------------------------------------------+");
-                Console.WriteLine("\t\t\t| 1 -> DISPLAY CHARACTER INFO\t\t\t       |");
-                Console.WriteLine("\t\t\t| 2 -> DELETE A CHARACTER\t\t\t       |");
+                Console.WriteLine("\t\t\t| 1 -> VIEW ALL CHARACTERS\t\t\t       |");
+                Console.WriteLine("\t\t\t| 2 -> VIEW A SPECIFIC CHARACTER\t\t       |");
+                Console.WriteLine("\t\t\t| 3 -> DELETE A CHARACTER\t\t\t       |");
                 Console.WriteLine("\t\t\t| 0 -> GO BACK\t\t\t\t\t       |");
                 Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
 
@@ -194,13 +195,16 @@ namespace Samson_Brawlers
                 switch (input)
                 {
                     case 1:
+                        load.DisplayAllInfoAllCharacters(database);
+                        break;
+                    case 2:
                         if (!load.GetSelectedCharacter(database))
                         {
                             break;
                         }
                         load.DisplayCharacterInfo(database);
                         break;
-                    case 2:
+                    case 3:
                         if (!load.GetSelectedCharacter(database))
                         {
                             break;

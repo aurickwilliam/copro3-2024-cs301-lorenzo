@@ -22,11 +22,11 @@ namespace Samson_Brawlers
 
                     if (inputInt < 0)
                     {
-                        throw new InputNotAChoiceException();
+                        throw new InputNotAChoiceException("\n\t\t\t\t\tPLEASE SELECT FROM THE GIVEN CHOICES!\n");
                     }
                     else if (inputInt > 4)
                     {
-                        throw new InputNotAChoiceException();
+                        throw new InputNotAChoiceException("\n\t\t\t\t\tPLEASE SELECT FROM THE GIVEN CHOICES!\n");
                     }
 
                     break;
@@ -87,7 +87,7 @@ namespace Samson_Brawlers
                 }
                 catch (FormatException ex)
                 {
-                    Console.WriteLine("\n\t\t\tPLEASE INPUT A NUMBER VALUE!\n");
+                    Console.WriteLine("\n\t\t\t PLEASE INPUT A NUMBER VALUE!\n");
                 }
                 catch (InputNotAChoiceException ex)
                 {
