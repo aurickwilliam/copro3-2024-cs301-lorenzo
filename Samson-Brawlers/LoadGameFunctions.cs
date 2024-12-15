@@ -121,10 +121,21 @@ namespace Samson_Brawlers
         {
             List<List<string>> allCharacterList = database.GetAllCharacterInfo();
 
-            for (int index = 0; index < allCharacterList.Count; index++)
+            if (allCharacterList.Count == 0)
             {
-                DisplayCharacterInfo(allCharacterList[index], index + 1);
-                Console.WriteLine("\n+=======================================================================================================+\n");
+                Console.WriteLine("\t\t\t+------------------------------------------------------+");
+                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                Console.WriteLine("\t\t\t|\t       NO CHARACTERS AVAILABLE!\t\t       |");
+                Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
+                Console.WriteLine("\t\t\t+------------------------------------------------------+\n");
+            }
+            else
+            {
+                for (int index = 0; index < allCharacterList.Count; index++)
+                {
+                    DisplayCharacterInfo(allCharacterList[index], index + 1);
+                    Console.WriteLine("\n+=======================================================================================================+\n");
+                }
             }
 
             Console.WriteLine("\t\t\t Press 'Enter' to Go Back...");

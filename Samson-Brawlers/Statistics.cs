@@ -107,9 +107,14 @@ namespace Samson_Brawlers
                     //Console.WriteLine(operation);
                     //Console.WriteLine(value);
 
+                    if (availablePts - value < 0)
+                    {
+                        throw new InvalidStatPointException("\n\t\t\t INVALID VALUE, INSUFFICIENT AVAILABLE POINTS!\n");
+                    }
+
                     if (operation == '+')
                     {
-                        if (stats[statIndex] + value <= 10)
+                        if ((stats[statIndex] + value) <= 10)
                         { 
                             stats[statIndex] += value;
                             availablePts -= value;
@@ -122,7 +127,7 @@ namespace Samson_Brawlers
                     }
                     else if (operation == '-')
                     {
-                        if (stats[statIndex] - value >= 0)
+                        if ((stats[statIndex] - value) >= 0)
                         {
                             stats[statIndex] -= value;
                             availablePts += value;

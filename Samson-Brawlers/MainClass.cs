@@ -136,7 +136,7 @@ namespace Samson_Brawlers
                 Console.WriteLine("\t\t\t|\t       CHARACTER CREATION FAILED!\t       |");
                 Console.WriteLine("\t\t\t|\t\t\t\t\t\t       |");
                 Console.WriteLine("\t\t\t+------------------------------------------------------+");
-            }            
+            }
 
             characters.Add( character );
             Console.WriteLine("\n\t\t\tPress \"ENTER\" to Go Back to Main Menu...");
